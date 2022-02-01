@@ -1,6 +1,7 @@
 import appConfig from '../config.json'
 import { Box, Button, Text, TextField, Image } from '@skynexui/components';
 import React from 'react';
+import { useRouter} from 'next/router'
 
 
 //Componente React
@@ -35,7 +36,6 @@ function GlobalStyle() {
 
 function Title(props) {
     const Tag = props.tag || 'h1'
-    console.log(props)
     return(
         <>
             <Tag>{props.children}</Tag>
@@ -65,7 +65,8 @@ function Title(props) {
 export default function PaginaInicial() {
     //const username = 'viniirbr';
     const [username, setUsername] = React.useState('')
-    console.log(username)
+    const routing = useRouter()
+    console.log(routing)
   
     return (
       <>
@@ -95,6 +96,10 @@ export default function PaginaInicial() {
             {/* Formulário */}
             <Box
               as="form"
+              onSubmit = {function(eventinfo) {
+                  eventinfo.preventDefault()
+                routing.push('/chat')
+              }}
               styleSheet={{
                 display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                 width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
@@ -119,7 +124,6 @@ export default function PaginaInicial() {
               value={username}
               onChange={function (event) {
                   const value = event.target.value
-                  console.log('usuario digitou: ' + value)
                   setUsername(value)
               }}
                 fullWidth
