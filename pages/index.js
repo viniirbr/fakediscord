@@ -41,7 +41,7 @@ function Title(props) {
             <Tag>{props.children}</Tag>
             <style jsx> {`
                 ${Tag} {
-                    color:${appConfig.theme.colors.green['900']};
+                    color:${appConfig.theme.colors.green['600']};
                     font-size: 24px;
                 }   
             `}</style>
@@ -66,7 +66,6 @@ export default function PaginaInicial() {
     //const username = 'viniirbr';
     const [username, setUsername] = React.useState('')
     const routing = useRouter()
-    console.log(routing)
   
     return (
       <>
@@ -90,7 +89,7 @@ export default function PaginaInicial() {
               width: '100%', maxWidth: '700px',
               borderRadius: '5px', padding: '32px', margin: '16px',
               boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
-              backgroundColor: appConfig.theme.colors.neutrals['700'],
+              backgroundColor: appConfig.theme.colors.brown['600'],
             }}
           >
             {/* Formulário */}
@@ -98,7 +97,7 @@ export default function PaginaInicial() {
               as="form"
               onSubmit = {function(eventinfo) {
                   eventinfo.preventDefault()
-                routing.push('/chat')
+                  routing.push('/chat')
               }}
               styleSheet={{
                 display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
@@ -130,9 +129,9 @@ export default function PaginaInicial() {
                 textFieldColors={{
                   neutral: {
                     textColor: appConfig.theme.colors.neutrals['200'],
-                    mainColor: appConfig.theme.colors.neutrals['900'],
+                    mainColor: appConfig.theme.colors.brown['900'],
                     mainColorHighlight: appConfig.theme.colors.brown['400'],
-                    backgroundColor: appConfig.theme.colors.neutrals['800'],
+                    backgroundColor: appConfig.theme.colors.brown['900'],
                   },
                 }}
               />
@@ -142,9 +141,9 @@ export default function PaginaInicial() {
                 fullWidth
                 buttonColors={{
                   contrastColor: appConfig.theme.colors.neutrals["000"],
-                  mainColor: appConfig.theme.colors.blue['400'],
-                  mainColorLight: appConfig.theme.colors.blue['100'],
-                  mainColorStrong: appConfig.theme.colors.blue['900'],
+                  mainColor: appConfig.theme.colors.brown['400'],
+                  mainColorLight: appConfig.theme.colors.brown['100'],
+                  mainColorStrong: appConfig.theme.colors.brown['900'],
                 }}
               />
             </Box>
@@ -159,7 +158,7 @@ export default function PaginaInicial() {
                 alignItems: 'center',
                 maxWidth: '200px',
                 padding: '16px',
-                backgroundColor: appConfig.theme.colors.neutrals['800'],
+                backgroundColor: appConfig.theme.colors.brown['900'],
                 border: '1px solid',
                 borderColor: appConfig.theme.colors.neutrals['999'],
                 borderRadius: '10px',
