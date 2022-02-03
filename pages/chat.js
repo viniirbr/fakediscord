@@ -3,12 +3,15 @@ import { Box, Text, TextField, Image, Button } from '@skynexui/components';
 import React from 'react';
 import appConfig from '../config.json';
 import { createClient} from '@supabase/supabase-js'
+import { useRouter} from 'next/router'
 
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0Mzg0NTkwNCwiZXhwIjoxOTU5NDIxOTA0fQ.H5nOxreK09IG63Haw6TJ2UCBwcCIcfeRUnNzyF9tnjI'
 const URL = 'https://jlgqjeoxwqgympdhayve.supabase.co'
 const supabaseCliente = createClient(URL, SUPABASE_ANON_KEY)
 
 export default function ChatPage() {
+    const routing = useRouter()
+    const currentUser = routing.query.username
     // Sua lógica vai aqui
     const [message, setMessage] = React.useState('')
     const [messageList, setMessageList] = React.useState([])
@@ -26,7 +29,7 @@ export default function ChatPage() {
     function handleNewMessage(newMessage) {
         const message = {
             id: messageList.length+1,
-            from: 'vanessametonini',
+            from: currentUser,
             messageText: newMessage
         }
         supabaseCliente
