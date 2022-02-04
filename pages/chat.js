@@ -4,6 +4,7 @@ import React from 'react';
 import appConfig from '../config.json';
 import { createClient} from '@supabase/supabase-js'
 import { useRouter} from 'next/router'
+import { ButtonSendSticker } from '../src/components/ButtonSendSticker'
 
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0Mzg0NTkwNCwiZXhwIjoxOTU5NDIxOTA0fQ.H5nOxreK09IG63Haw6TJ2UCBwcCIcfeRUnNzyF9tnjI'
 const URL = 'https://jlgqjeoxwqgympdhayve.supabase.co'
@@ -15,6 +16,17 @@ export default function ChatPage() {
     // Sua lógica vai aqui
     const [message, setMessage] = React.useState('')
     const [messageList, setMessageList] = React.useState([])
+    //     {
+    //         id: 1,
+    //         from: 'viniirbr',
+    //         messageText: ':sticker: https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_14.png'
+    //     },
+    //     {
+    //         id: 2,
+    //         from: 'peas',
+    //         messageText: 'Gostei desse sticker!'
+    //     }
+    // ])
 
     React.useEffect(() => {
         supabaseCliente
@@ -22,7 +34,7 @@ export default function ChatPage() {
             .select('*')
             .order('id', { ascending: false })
             .then(({ data }) => {
-                setMessageList(data)
+                 setMessageList(data)
             })
     }, [])
 
@@ -118,6 +130,12 @@ export default function ChatPage() {
                                 color: appConfig.theme.colors.neutrals[200],
                             }}
                         />
+                        <ButtonSendSticker
+                            onStickerClick = {(sticker) => {
+                                handleNewMessage(':sticker:' + sticker)
+
+                            }}
+                        />
                     </Box>
                 </Box>
             </Box>
@@ -144,7 +162,6 @@ function Header() {
 }
 
 function MessageList(props) {
-    console.log('MessageList', props);
     return (
         <Box
             tag="ul"
@@ -200,7 +217,15 @@ function MessageList(props) {
                         {(new Date().toLocaleDateString())}
                     </Text>
                 </Box>
-                {message.messageText}
+                {message.messageText.startsWith(':sticker:') 
+                    ? (
+                        <Image styleSheet={{width:'100px'}} src={message.messageText.replace(':sticker:', '')}/>
+                    )
+                    : (
+                        message.messageText
+                    )
+                    }
+
             </Text> 
                 )
             })
