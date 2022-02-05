@@ -3,37 +3,6 @@ import { Box, Button, Text, TextField, Image } from '@skynexui/components';
 import React from 'react';
 import { useRouter} from 'next/router'
 
-
-//Componente React
-function GlobalStyle() {
-    return (
-        <style global jsx>{`
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        list-style: none;
-      }
-      body {
-        font-family: 'Open Sans', sans-serif;
-      }
-      /* App fit Height */ 
-      html, body, #__next {
-        min-height: 100vh;
-        display: flex;
-        flex: 1;
-      }
-      #__next {
-        flex: 1;
-      }
-      #__next > * {
-        flex: 1;
-      }
-      /* ./App fit Height */ 
-    `}</style>
-    );
-  }
-
 function Title(props) {
     const Tag = props.tag || 'h1'
     return(
@@ -66,15 +35,15 @@ export default function PaginaInicial() {
     //const username = 'viniirbr';
     const [username, setUsername] = React.useState('')
     const routing = useRouter()
+    const teste = 'hidden'
   
     return (
       <>
-        <GlobalStyle />
         <Box
           styleSheet={{
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             backgroundColor: appConfig.theme.colors.green['400'],
-            backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
+            backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply'
           }}
         >
           <Box
@@ -100,8 +69,8 @@ export default function PaginaInicial() {
                   routing.push(`/chat?username=${username}`)
               }}
               styleSheet={{
-                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
+                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between',
+                width: { xs: '100%', sm: '50%' }, textAlign: 'center', height: '100%', gap:'10px'
               }}
             >
               <Title tag="h2">Boas vindas de volta!</Title>
@@ -138,19 +107,26 @@ export default function PaginaInicial() {
               <Button
                 type='submit'
                 label='Entrar'
-                fullWidth
+                width='30%'
+                rounded='full'
                 buttonColors={{
                   contrastColor: appConfig.theme.colors.neutrals["000"],
                   mainColor: appConfig.theme.colors.brown['400'],
                   mainColorLight: appConfig.theme.colors.brown['100'],
                   mainColorStrong: appConfig.theme.colors.brown['900'],
                 }}
+                onClick={(event) => {
+                  
+                }}
+
               />
             </Box>
             {/* Formulário */}
   
   
             {/* Photo Area */}
+            
+            
             <Box
               styleSheet={{
                 display: 'flex',
@@ -163,13 +139,17 @@ export default function PaginaInicial() {
                 borderColor: appConfig.theme.colors.neutrals['999'],
                 borderRadius: '10px',
                 flex: 1,
-                minHeight: '240px',
+                minHeight: '240px'
               }}
             >
               <Image
                 styleSheet={{
                   borderRadius: '50%',
                   marginBottom: '16px',
+                  marginTop: {
+                    xs:'10px',
+                    sm:'0'
+                  }
                 }}
                 src={`https://github.com/${username}.png`}
               />

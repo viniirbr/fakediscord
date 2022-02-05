@@ -10,6 +10,35 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5v
 const URL = 'https://jlgqjeoxwqgympdhayve.supabase.co'
 const supabaseCliente = createClient(URL, SUPABASE_ANON_KEY)
 
+function GlobalStyle() {
+    return (
+        <style global jsx>{`
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        list-style: none;
+      }
+      body {
+        font-family: 'Open Sans', sans-serif;
+      }
+      /* App fit Height */ 
+      html, body, #__next {
+        height: 100vh;
+        display: flex;
+        flex: 1;
+      }
+      #__next {
+        flex: 1;
+      }
+      #__next > * {
+        flex: 1;
+      }
+      /* ./App fit Height */ 
+    `}</style>
+    );
+  }
+
 export default function ChatPage() {
     const routing = useRouter()
     const currentUser = routing.query.username
@@ -57,14 +86,14 @@ export default function ChatPage() {
 
     // ./Sua lógica vai aqui
     return (
+        <>
         <Box
             styleSheet={{
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                backgroundColor: appConfig.theme.colors.green[600],
-                backgroundImage: `url(https://virtualbackgrounds.site/wp-content/uploads/2020/08/the-matrix-digital-rain.jpg)`,
-                backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
+                display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
+                backgroundColor: appConfig.theme.colors.green[400],
                 color: appConfig.theme.colors.neutrals['000'],
-                height: '500px'
+                width: '100%',
+                height: '100vh', margin:'0 auto'
             }}
         >
             <Box
@@ -74,11 +103,18 @@ export default function ChatPage() {
                     flex: 1,
                     boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
                     borderRadius: '5px',
-                    backgroundColor: appConfig.theme.colors.neutrals[700],
+                    backgroundColor: appConfig.theme.colors.brown['600'],
                     height: '100%',
                     maxWidth: '95%',
                     maxHeight: '95vh',
-                    padding: '32px',
+                    padding: {
+                        xs: '10px',
+                        sm: '32px'
+                    },
+                    margin: {
+                        xs: '5px',
+                        sm: '20px'
+                    },
                 }}
             >
                 <Header />
@@ -87,7 +123,7 @@ export default function ChatPage() {
                         position: 'relative',
                         display: 'flex',
                         flex: 1,
-                        height: '80%',
+                        height: '90%',
                         backgroundColor: appConfig.theme.colors.neutrals[600],
                         flexDirection: 'column',
                         borderRadius: '5px',
@@ -140,7 +176,7 @@ export default function ChatPage() {
                 </Box>
             </Box>
         </Box>
-    )
+        </>)
 }
 
 function Header() {
@@ -151,7 +187,6 @@ function Header() {
                     Chat
                 </Text>
                 <Button
-                    variant='tertiary'
                     colorVariant='neutral'
                     label='Logout'
                     href="/"

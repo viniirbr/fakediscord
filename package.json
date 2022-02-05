@@ -1,14 +1,21 @@
 {
   "dependencies": {
     "@skynexui/components": "^1.24.2",
+    "@supabase/supabase-js": "^1.29.4",
+    "babel-plugin-styled-components": "^2.0.2",
+    "babel-preset-next": "^1.4.0",
     "next": "^12.0.9",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.3"
   },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
+  },
+  "devDependencies": {
+    "babel-plugin-react-ssr": "^1.0.1"
   }
 }
